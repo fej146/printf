@@ -34,7 +34,6 @@ int _printf(const char *format, ...)
 				write(1, format, 1);
 				chara_print++;
 			}
-			
 			else if (*format == 'c')
 			{
 				char c = va_arg(list, int);
@@ -42,21 +41,17 @@ int _printf(const char *format, ...)
 				write(1, &c, 1);
 				chara_print++;
 			}
-			
 			else if (*format == 's')
 			{
 				char *str = va_arg(list, char*);
 				int str_len = 0;
 
-				/*calculate the string length*/
 				while (str[str_len] != '\0')
 					str_len++;
-				/*write the string to the std output*/
 				write(1, str, str_len);
 				chara_print += str_len;
 			}
 		}
-
 		format++;
 	}
 	va_end(list);
