@@ -1,12 +1,12 @@
 #include "main.h"
 /**
  * _printf - is a function that selects the correct function to print.
- * @format: identifier to look for.
+ * @format: identifier passed to the function.
  * Return: the length of the string.
  */
 int _printf(const char * const format, ...)
 {
-	convert p[] = {
+	change p[] = {
 		{"%s", print_s}, {"%c", print_c},
 		{"%%", print_37},
 		{"%i", print_i}, {"%d", print_d}, {"%r", print_revs},
@@ -17,17 +17,18 @@ int _printf(const char * const format, ...)
 	};
 
 	va_list args;
-	int i = 0, j, length = 0;
+	int i = 0;
+	int j;
+	int length = 0;
 
 	va_start(args, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 Here:
-	while (format[i] != '\0')
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		j = 13;
-		while (j >= 0)
+		for (j = 13; j >= 0; j--)
 		{
 			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
 			{
@@ -35,11 +36,9 @@ Here:
 				i = i + 2;
 				goto Here;
 			}
-			j--;
 		}
 		_putchar(format[i]);
 		length++;
-		i++;
 	}
 	va_end(args);
 	return (length);

@@ -7,17 +7,16 @@
 #include <unistd.h>
 
 /**
- * struct format - converter for printf
+ * struct format - converts for printf function
  * @ph: type char pointer of the specifier
  * @function: function for the conversion specifier
- *
  */
 
 typedef struct format
 {
 	char *ph;
 	int (*function)();
-} convert;
+} change;
 
 int *_strcpy(char *dest, char *src);
 int print_pointer(va_list val);
